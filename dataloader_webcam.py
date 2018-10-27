@@ -119,7 +119,7 @@ class DetectionLoader:
         self.det_inp_dim = int(self.det_model.net_info['height'])
         assert self.det_inp_dim % 32 == 0
         assert self.det_inp_dim > 32
-        self.det_model.cuda()
+        #self.det_model.cuda()
         self.det_model.eval()
 
         self.stopped = False
@@ -144,8 +144,8 @@ class DetectionLoader:
                 self.dataloder.Q.queue.clear()
             with torch.no_grad():
                 # Human Detection
-                img = img.cuda()
-                prediction = self.det_model(img, CUDA=True)
+                #img = img.cuda()
+                prediction = self.det_model(img, CUDA=False)
                 # NMS process
                 dets = dynamic_write_results(prediction, opt.confidence,
                                     opt.num_classes, nms=True, nms_conf=opt.nms_thesh)
