@@ -31,7 +31,7 @@ class FastPose(nn.Module):
         out = self.preact(x)
         out = self.suffle1(out)
         out = self.duc1(out)
-        out = self.duc2(out)
+        duc_out = self.duc2(out)
 
-        out = self.conv_out(out)
-        return out
+        final_out = self.conv_out(duc_out)
+        return duc_out #duc_out
